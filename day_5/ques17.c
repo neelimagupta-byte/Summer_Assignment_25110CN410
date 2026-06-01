@@ -24,4 +24,4 @@ int main(){
     if(f==0){
         printf("not a perfect number.");
     } 
-}
+return 0;}
