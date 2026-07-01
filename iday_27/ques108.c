@@ -20,7 +20,7 @@ marks m;
 void add();
 void generate_marksheet();
 int search();
-float percentage(int ,int);
+float percentage(float,float);
 void edit_marks();
 void edit_details();
 void delete();
@@ -107,7 +107,8 @@ fclose(ptr);
 }
 
 void generate_marksheet(){
-        int i,rno,f=0,m_=0,t=0;
+        int i,rno,f=0;
+        float m_=0,t=0;
         FILE *ptr=fopen("marks.dat","rb");
         if(!ptr){
                 printf("file not opening!\n");
@@ -133,10 +134,10 @@ void generate_marksheet(){
         printf("SUBJECT                                  MARKS                        TOTAL                        PERCENTAGE\n");
         for(i=0;i<5;i++){
         printf("%-40s %-30d %-40d\n", m.subject[i], m.marks[i], m.tmarks[i]);
-        m_=m_+m.marks[i];
-        t=t+m.tmarks[i];
+        m_=m_+(float)m.marks[i];
+        t=t+(float)m.tmarks[i];
         }
-        printf("                                         %d                            %d                              %.2f",m_,t,percentage(m_,t));
+        printf("                                         %.2f                            %.2f                              %.2f",m_,t,percentage(m_,t));
         printf("\n-------------------------------------------------------------------------------------------------------------------------------------\n");
         break;}
         }
@@ -210,7 +211,7 @@ FILE *ptr;
 fclose(ptr);
 return rno;}
 
-float percentage(int m,int t){
+float percentage(float m,float t){
         float per;
         per=(m/t)*100;
         return per;
